@@ -1,0 +1,13 @@
+.current-location-area {
+    border: solid 3px black;
+    background-color: #D3D3D3;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+.weather-image {
+    width: 300px;
+    height: 300px;
+}
