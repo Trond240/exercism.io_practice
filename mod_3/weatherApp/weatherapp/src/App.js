@@ -34,18 +34,20 @@ class App extends Component {
 
   render() {
     let currentLocation 
-    //Conditional rendering, with else statement.
-    if(!this.state.defaultDay.coord) {
+    let weatherCard
+    if(!this.state.defaultDay.coord && this.state.dailyForcast.length === 0) {
       currentLocation = <p>LOADING</p>
+      weatherCard = <p>LOADING</p>
     } else {
       currentLocation =  <CurrentLocation currentLocation={this.state.defaultDay}/>
+      weatherCard = <WeatherContainer weatherCard={this.state.dailyForcast}/>
     }
     return (
       <main className='main-app'>
         <NavBar />
         <div className='weather-div'>
           {currentLocation}
-          <WeatherContainer weatherCard={this.state.dailyForcast}/>
+          {weatherCard}
         </div>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
@@ -56,7 +58,3 @@ class App extends Component {
 }
 
 export default App;
-
-  // Name={this.state.name} 
-            // DailyTemp={this.state.main}
-            // weather={this.state.weather}

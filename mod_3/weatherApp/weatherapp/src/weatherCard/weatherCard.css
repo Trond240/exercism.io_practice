@@ -1,9 +1,16 @@
 .weather-card {
-    background-color: #D3D3D3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #87ceeb;
+    background-image: url("https://images.app.goo.gl/GwycaGYAHxM69MQw6");
     border: solid 5px black;
     margin: 13px; 
     border-radius: 5px;
-    width: 21%;
-    height: 305px;
+    width: 16%;
+    height: 90%;
     text-align: center;
+}
+
+.weather-card-image {
+    height: 200px;
+    width: 180px;
 }
