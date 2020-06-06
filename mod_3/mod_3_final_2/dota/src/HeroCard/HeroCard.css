@@ -1,0 +1,52 @@
+.hero-card {
+    color: white;
+    font-size: 1.3em;
+    background-color: #272727;
+    border: solid 2px black;
+    border-radius: 4px;
+    width: 30%;
+    height: 20%;
+    margin: 10px;
+    margin-left: 30px;
+    text-align: center;
+    font-family: 'Metal Mania', cursive;
+}
+
+.full-card-image {
+    width: 200px;
+    height: 200px;
+}
+
+p {
+    margin-left: 100px;
+    font-size: 1em;
+}
+
+.attack {
+    color: green; 
+}
+
+.defense {
+    color: red;
+}
+
+.stat-div {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.butt-image {
+    width: 40px;
+    height: 40px;
+}
+
+button {
+    background-color: #272727;
+    border: solid 2px black;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
