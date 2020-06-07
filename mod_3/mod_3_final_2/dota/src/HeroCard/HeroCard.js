@@ -13,16 +13,13 @@ export const HeroCard = (props) => {
             </div> */}
             <img className='full-card-image' src={`http://ddragon.leagueoflegends.com/cdn/10.11.1/img/champion/${props.fullImage}`} alt={`${props.name}-image`}/>
             {/* <img className='full-card-image' src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${props.name}_4.jpg`} alt="hero-image"/> */}
-
             <div className='button-div'>
                 <button><img className='butt-image' src={'http://ddragon.leagueoflegends.com/cdn/10.11.1/img/spell/SummonerFlash.png'}/></button>
-                <Link to={`/champion/${props.id}`}>
+                <Link to={`/hero/${props.id}`}>
                     <button><img className='butt-image' src={'http://ddragon.leagueoflegends.com/cdn/10.11.1/img/spell/FlashFrost.png'}/></button>
                 </Link>
             </div>
             {/* <img className='sprite-card-image' src={`http://ddragon.leagueoflegends.com/cdn/10.11.1/img/sprite/${props.spriteImage}`} alt="hero-image"/> */}
-
-
         </section>
     )
 }
