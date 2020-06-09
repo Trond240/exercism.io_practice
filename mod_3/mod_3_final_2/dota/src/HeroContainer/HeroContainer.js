@@ -1,12 +1,11 @@
 import React from 'react';
 import { HeroCard } from '/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/HeroCard/HeroCard.js';
-import '/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/HeroContainer/HeroContainer.css';
+import '././HeroContainer.css';
 
 export const HeroContainer = (props) => {
     const allHeros = props.allHeroInfo;
 
     const heroInfo = Object.keys(allHeros).map(hero => {
-        console.log(allHeros[hero].key)
         return (
             <HeroCard 
                 key={allHeros[hero].key}
@@ -23,6 +22,9 @@ export const HeroContainer = (props) => {
                 tags={allHeros[hero].tags}
                 title={allHeros[hero].title}
                 fecthImage={props.fetchImage}
+                addToFavorites={props.addToFavorites}
+                removeFromFavorites={props.removeFromFavorites}
+                favorites={props.favorites}
             />
         )
     })

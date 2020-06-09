@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import { HeroContainer } from '/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/HeroContainer/HeroContainer.js';
-import { WelcomePage } from '/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/WelcomePage/WelcomePage.js';
+import { HeroContainer } from './HeroContainer/HeroContainer.js';
+import { WelcomePage } from './WelcomePage/WelcomePage.js';
+import { HeroInfoContainer } from './HeroInfoContainer/HeroInfoContainer.js';
+import { NavBar } from './NavBar/NavBar.js';
 import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      heroInfo: {}
+      heroInfo: {},
+      favorites: []
     }
-  }
-
-  fetchImage(image) {
-    return fetch()
-    .then(`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${image}`)
-    .then(res => res.json())
-    .then(image => console.log(image))
   }
 
   componentDidMount() {
@@ -27,21 +23,77 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
-  render() {
-    let heros;
+  addToFavorites = (id) => {
+    this.setState({favorites:[...this.state.favorites,id]})
+    
+}
 
+removeFromFavorites = (id) => {
+  let favorites = this.state.favorites.filter(favoriteId => favoriteId !== id )
+  this.setState({favorites})
+}
+
+// findFavorites = () => {
+//   console.log('made-it')
+//   return Object.keys(this.state.heroInfo.data).filter(hero => {
+//     console.log(this.state.heroInfo.data[hero])
+//       // return this.state.favorites.find(favoriteId => favoriteId === this.state.heroInfo[hero].key)
+//     })
+  
+// }
+
+  render() {
+    let champions;
+    let championInfo;
+    let favoriteRoute;
     const ObjectCheck = Object.keys(this.state.heroInfo)
 
     if(ObjectCheck.length === 0) {
-      heros = <p>LOADING</p>
+      champions = <p>...LOADING</p>
+      championInfo = <p>...LOADING</p>
+      favoriteRoute= <p>...LOADING</p>
     } else {
-      heros = <Route path='/heros' render={() => <HeroContainer allHeroInfo={this.state.heroInfo.data} fetchImage={this.fetchImage}/>}/>
+      champions=<Route path='/champions' 
+      render={() => <HeroContainer 
+      allHeroInfo={this.state.heroInfo.data} 
+      addToFavorites={this.addToFavorites}
+      removeFromFavorites={this.removeFromFavorites}
+      favorites={this.state.favorites}
+      fetchImage={this.fetchImage}/>}
+      />
+      championInfo=<Route path='/champions/champion/:id' 
+      render={({ match }) => <HeroInfoContainer
+      foundHero={this.state.heroInfo.data[Object.keys(this.state.heroInfo.data).find(champion => {
+          if(this.state.heroInfo.data[champion].key === match.params.id) {
+            return this.state.heroInfo.data[champion]
+          }
+        }
+      )]}
+      addToFavorites={this.addToFavorites}
+      removeFromFavorites={this.removeFromFavorites}
+      favorites={this.state.favorites}
+      match={ match }/
+      >}
+      />
+      favoriteRoute=<Route path = '/favorites' render={ ({ match }) => <HeroContainer
+      addToFavorites = {this.addToFavorites} 
+      removeFromFavorites = {this.removeFromFavorites}
+      favorites = {this.state.favorites}
+      match={ match }
+      allFavorites= {Object.keys(this.state.heroInfo.data).filter(hero => {
+          return this.state.favorites.find(favoriteId => favoriteId === this.state.heroInfo[hero].key)
+        })}
+      />} 
+      />
     }
     return (
       <section>
+        <NavBar favorites={this.state.favorites}/>
         <Switch>
-          {heros}
+          {championInfo}
+          {champions}
           <Route path='/' exact render={ () => <WelcomePage/>} />
+          {favoriteRoute}
         </Switch>
       </section>
     )

@@ -1,21 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:200');
 
-.hero-container {
-    align-content: flex-start;    
-    display: flex;
-    flex-flow: row wrap;
-    border-color: #66CD00;
+.welcome-page {
+    margin-top: 7%;
+    text-align: center;
     background-color: black;
-    ;
+    color: black;
+    font-size: 2.0em;
+    font-family: 'Bangers';
 }
 
-.hero-container {
-    --borderWidth: 3px;
-    background: black;
+.welcome-image {
+    border: solid 3px#66CD00;
+    width: 70%
+} 
+
+
+html {
+    height: 100%;
+}
+
+.welcome-page, .welcome-image {
+    --borderWidth: 10px;
+    background: #1D1F20;
     position: relative;
     border-radius: var(--borderWidth);
 }
-.hero-container:after {
+.welcome-page, .welcome-image:after {
     content: '';
     position: absolute;
     top: calc(-1 * var(--borderWidth));
@@ -41,3 +51,5 @@
 		background-position: 0% 50%;
 	}
 }
+
+

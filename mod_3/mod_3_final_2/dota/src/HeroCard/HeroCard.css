@@ -2,32 +2,26 @@
     color: white;
     font-size: 1.3em;
     background-color: #272727;
-    border: solid 2px black;
-    border-radius: 4px;
+    border: solid 4px #66CD00;
+    border-radius: 10px;
     width: 30%;
     height: 20%;
     margin: 10px;
     margin-left: 30px;
     text-align: center;
-    font-family: 'Metal Mania', cursive;
+    font-family: 'Bangers';
+    text-transform: uppercase;  
 }
 
 .full-card-image {
     width: 200px;
     height: 200px;
+    border-radius: 10px;
 }
 
 p {
     margin-left: 100px;
     font-size: 1em;
-}
-
-.attack {
-    color: green; 
-}
-
-.defense {
-    color: red;
 }
 
 .stat-div {
@@ -36,17 +30,20 @@ p {
 }
 
 .butt-image {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
 }
 
 button {
     background-color: #272727;
-    border: solid 2px black;
-    border-radius: 4px;
+    border: solid 2px #272727;
+    border-radius: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
+    color: gold;
 }
+
 

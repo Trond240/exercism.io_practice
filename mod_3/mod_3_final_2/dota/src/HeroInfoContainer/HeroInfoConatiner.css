@@ -1,0 +1,34 @@
+.info {
+    display: flex;
+    flex-flow: row wrap;
+    border: solid 5px black;
+    background-color: black;
+}
+
+.info-div {
+    width: 25%;
+    margin: 10px;
+    border: solid 5px black;
+    margin-left: 90px;
+    font-family: 'Bangers';
+    font-size: 1.3em;
+    text-align: center;
+    background-color: #272727;
+    color:white;
+    border: solid 4px #66CD00;
+}
+
+.full-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.hero-name {
+    color: #66CD00;
+    font-size: 2.2em;
+}
+
+.hero-nick-name {
+    color: gold;
+}
