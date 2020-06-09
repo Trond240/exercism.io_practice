@@ -5,7 +5,7 @@ import App from './App';
 import { MemoryRouter } from 'react-router-dom';
 import { fetchInfo } from './apiCalls.js';
 
-jest.mock('/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/apiCalls.js')
+jest.mock('./apiCalls.js')
 
 const mockData = {
     "type": "champion",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HeroContainer } from './HeroContainer/HeroContainer.js';
 import { WelcomePage } from './WelcomePage/WelcomePage.js';
 import { HeroInfoContainer } from './HeroInfoContainer/HeroInfoContainer.js';
-import { FavoriteContainer } from '/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/FavoritesContainer/FavoriteContainer.js'
+import { FavoriteContainer } from './FavoritesContainer/FavoriteContainer.js'
 import { NavBar } from './NavBar/NavBar.js';
 import { Switch, Route } from 'react-router-dom';
 

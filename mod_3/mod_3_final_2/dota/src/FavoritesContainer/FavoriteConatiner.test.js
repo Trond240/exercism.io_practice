@@ -81,7 +81,7 @@ describe('Favorites Container', () => {
         const viewMoreEl = getByText('View More');
         expect(viewMoreEl).toBeInTheDocument();
         
-        const unFavoriteEl = getByText('Un-faavorite');
+        const unFavoriteEl = getByText('Un-favorite');
         expect(unFavoriteEl).toBeInTheDocument(); 
 
         const championImageAlt = screen.getByAltText("Aatrox-image")
