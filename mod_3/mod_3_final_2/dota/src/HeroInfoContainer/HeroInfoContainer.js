@@ -4,7 +4,9 @@ import '././HeroInfoConatiner.css';
 export const HeroInfoContainer = (props) => {
     let favoriteOrUnfavoriteBtn;
     let matchId = (props.foundHero.key)
-    console.log(props)
+    console.log(props.foundHero.info)
+    console.log(props.foundHero)
+
 
 
     if(props.favorites.includes(matchId)) {

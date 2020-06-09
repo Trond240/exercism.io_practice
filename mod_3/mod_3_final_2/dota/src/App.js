@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HeroContainer } from './HeroContainer/HeroContainer.js';
 import { WelcomePage } from './WelcomePage/WelcomePage.js';
 import { HeroInfoContainer } from './HeroInfoContainer/HeroInfoContainer.js';
+import { FavoriteContainer } from '/Users/trondmakonese/mod_3/mod_3_final_2/dota/src/FavoritesContainer/FavoriteContainer.js'
 import { NavBar } from './NavBar/NavBar.js';
 import { Switch, Route } from 'react-router-dom';
 
@@ -10,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       heroInfo: {},
-      favorites: []
+      favorites: [],
+      favoriteObjects: []
     }
   }
 
@@ -33,14 +35,16 @@ removeFromFavorites = (id) => {
   this.setState({favorites})
 }
 
-// findFavorites = () => {
-//   console.log('made-it')
-//   return Object.keys(this.state.heroInfo.data).filter(hero => {
-//     console.log(this.state.heroInfo.data[hero])
-//       // return this.state.favorites.find(favoriteId => favoriteId === this.state.heroInfo[hero].key)
-//     })
-  
-// }
+findFavorites = () => {
+  return this.state.heroInfo.data[Object.keys(this.state.heroInfo.data).filter(hero => {
+    return this.state.favorites.find(id => {
+      if(this.state.heroInfo.data[hero].key === id && !this.state.favoriteObjects.includes(this.state.heroInfo.data[hero])) {
+        console.log(this.state.heroInfo.data[hero])
+        return this.state.favoriteObjects.push(this.state.heroInfo.data[hero])
+      }
+    })
+})]
+}
 
   render() {
     let champions;
@@ -75,14 +79,13 @@ removeFromFavorites = (id) => {
       match={ match }/
       >}
       />
-      favoriteRoute=<Route path = '/favorites' render={ ({ match }) => <HeroContainer
+      favoriteRoute=<Route path = '/favorites' render={ ({ match }) => <FavoriteContainer
       addToFavorites = {this.addToFavorites} 
       removeFromFavorites = {this.removeFromFavorites}
       favorites = {this.state.favorites}
       match={ match }
-      allFavorites= {Object.keys(this.state.heroInfo.data).filter(hero => {
-          return this.state.favorites.find(favoriteId => favoriteId === this.state.heroInfo[hero].key)
-        })}
+      allFavorites= {this.findFavorites()}
+      favoriteObjects={this.state.favoriteObjects}
       />} 
       />
     }

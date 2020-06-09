@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, fireEvent, screen } from '@testing-library/react';
+import { render, waitForElement, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
@@ -78,10 +78,170 @@ describe('App', ()  => {
 
   it('Should have a welcome page on load', async () => {
 
-    const { getByText } = renderApp()
+    const { getByText, getByAltText } = renderApp()
 
-    const imageAlt = screen.getByAltText("welcome-photo")
-    expect(imageAlt).toBeInTheDocument(); 
-  })
+    const navBarHeader = getByText('LEAGUE-IT!')
+    expect(navBarHeader).toBeInTheDocument();
+
+    const favorites = getByText('0 No Favorites')
+    expect(favorites).toBeInTheDocument();
+
+    const championBtn = getByText('Champions')
+    expect(championBtn).toBeInTheDocument();
+
+    const homeBtn = getByText('Home Page')
+    expect(homeBtn).toBeInTheDocument();
+
+    const imageAlt = await waitForElement( () => screen.getByAltText("welcome-photo")) 
+    expect(imageAlt).toBeInTheDocument();
+
+    const welcomeEl = await waitForElement( () => getByText("Welcome! Please Click to Enter")) 
+    expect(welcomeEl).toBeInTheDocument();
+});
+
+it('Should show a list of heros when the home imafge is clicked', async () => {
+
+  const { getByText, getAllByText, getByAltText } = renderApp();
+
+    const imageAlt = await waitForElement( () => screen.getByAltText("welcome-photo")) 
+    expect(imageAlt).toBeInTheDocument();
+
+    fireEvent.click(screen.getByAltText('welcome-photo')); 
+  
+    const nameOneEl = await waitForElement( () => getByText("Ahri")) 
+    expect(nameOneEl).toBeInTheDocument();
+
+    const nameTwoEl = await waitForElement( () => getByText("Akali")) 
+    expect(nameTwoEl).toBeInTheDocument();
+
+    const nameThreeEl = await waitForElement( () => getByText("Alistar")) 
+    expect(nameThreeEl).toBeInTheDocument();
+});
+
+it('Should show hero info page when view more is clicked', async () => {
+
+  const { getByText, getAllByText, getByAltText } = renderApp();
+
+    const imageAlt = await waitForElement( () => screen.getByAltText("welcome-photo")) 
+    expect(imageAlt).toBeInTheDocument();
+
+    fireEvent.click(screen.getByAltText('welcome-photo')); 
+  
+    const nameOneEl = await waitForElement( () => getByText("Ahri")) 
+    expect(nameOneEl).toBeInTheDocument();
+
+    const nameTwoEl = await waitForElement( () => getByText("Akali")) 
+    expect(nameTwoEl).toBeInTheDocument();
+
+    const nameThreeEl = await waitForElement( () => getByText("Alistar")) 
+    expect(nameThreeEl).toBeInTheDocument();
+
+    const viewMoreBtn = await waitForElement( () => getAllByText("View More")) 
+    expect(viewMoreBtn[0]).toBeInTheDocument();
+    
+    const viewMoreButton = await waitForElement(() => getAllByText('View More'))
+    fireEvent.click(viewMoreButton[0])
+
+    const nicnkNamEl = await waitForElement( () => getByText("the Darkin Blade")) 
+    expect(nicnkNamEl).toBeInTheDocument();
+
+    const blurbEl = await waitForElement( () => getByText("Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find...")) 
+    expect(blurbEl).toBeInTheDocument();
+
+    const infoCardNameEl = await waitForElement( () => getByText("Aatrox")) 
+    expect(infoCardNameEl).toBeInTheDocument();
+});
+
+it('Should be able to favorite a hero', async () => {
+
+  const { getByText, getAllByText, getByAltText } = renderApp();
+
+    const imageAlt = await waitForElement( () => screen.getByAltText("welcome-photo")) 
+    expect(imageAlt).toBeInTheDocument();
+
+    fireEvent.click(screen.getByAltText('welcome-photo')); 
+  
+    const nameOneEl = await waitForElement( () => getByText("Ahri")) 
+    expect(nameOneEl).toBeInTheDocument();
+
+    const nameTwoEl = await waitForElement( () => getByText("Akali")) 
+    expect(nameTwoEl).toBeInTheDocument();
+
+    const nameThreeEl = await waitForElement( () => getByText("Alistar")) 
+    expect(nameThreeEl).toBeInTheDocument();
+
+    const viewMoreBtn = await waitForElement( () => getAllByText("View More")) 
+    expect(viewMoreBtn[0]).toBeInTheDocument();
+    
+    const viewMoreButton = await waitForElement(() => getAllByText('View More'))
+    fireEvent.click(viewMoreButton[0])
+
+    const nicnkNamEl = await waitForElement( () => getByText("the Darkin Blade")) 
+    expect(nicnkNamEl).toBeInTheDocument();
+
+    const blurbEl = await waitForElement( () => getByText("Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find...")) 
+    expect(blurbEl).toBeInTheDocument();
+
+    const infoCardNameEl = await waitForElement( () => getByText("Aatrox")) 
+    expect(infoCardNameEl).toBeInTheDocument();
+
+    const favoriteButtonEl = await waitForElement( () => getByText("Favorite")) 
+    expect(favoriteButtonEl).toBeInTheDocument();
+
+    const favoriteButton = await waitForElement(() => getByText('Favorite'))
+    fireEvent.click(favoriteButton)
+
+    const favoriteCountEl = await waitForElement( () => getByText("1 Favorites")) 
+    expect(favoriteCountEl).toBeInTheDocument();
+});
+
+it('Should be able to view favorite heros', async () => {
+
+  const { getByText, getAllByText, getByAltText } = renderApp();
+
+    const imageAlt = await waitForElement( () => screen.getByAltText("welcome-photo")) 
+    expect(imageAlt).toBeInTheDocument();
+
+    fireEvent.click(screen.getByAltText('welcome-photo')); 
+  
+    const nameOneEl = await waitForElement( () => getByText("Ahri")) 
+    expect(nameOneEl).toBeInTheDocument();
+
+    const nameTwoEl = await waitForElement( () => getByText("Akali")) 
+    expect(nameTwoEl).toBeInTheDocument();
+
+    const nameThreeEl = await waitForElement( () => getByText("Alistar")) 
+    expect(nameThreeEl).toBeInTheDocument();
+
+    const viewMoreBtn = await waitForElement( () => getAllByText("View More")) 
+    expect(viewMoreBtn[0]).toBeInTheDocument();
+    
+    const viewMoreButton = await waitForElement(() => getAllByText('View More'))
+    fireEvent.click(viewMoreButton[0])
+
+    const nicnkNamEl = await waitForElement( () => getByText("the Darkin Blade")) 
+    expect(nicnkNamEl).toBeInTheDocument();
+
+    const blurbEl = await waitForElement( () => getByText("Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find...")) 
+    expect(blurbEl).toBeInTheDocument();
+
+    const infoCardNameEl = await waitForElement( () => getByText("Aatrox")) 
+    expect(infoCardNameEl).toBeInTheDocument();
+
+    const favoriteButtonEl = await waitForElement( () => getByText("Favorite")) 
+    expect(favoriteButtonEl).toBeInTheDocument();
+
+    const favoriteButton = await waitForElement(() => getByText('Favorite'))
+    fireEvent.click(favoriteButton)
+
+    const favoriteCountEl = await waitForElement( () => getByText("1 Favorites")) 
+    expect(favoriteCountEl).toBeInTheDocument();
+
+    const viewFavoritesButton = await waitForElement(() => getByText('1 Favorites'))
+    fireEvent.click(viewMoreButton[0])
+
+    const favoritedHeroEl = await waitForElement( () => getByText("Aatrox")) 
+    expect(favoritedHeroEl).toBeInTheDocument();
+});
 });
 
